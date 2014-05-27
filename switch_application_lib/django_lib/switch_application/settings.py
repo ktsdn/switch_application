@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'switch_application.wsgi.application'
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('20.0.2.225')
+CORS_ORIGIN_WHITELIST = ('20.0.2.224')
 CORS_ORIGIN_REGEX_WHITELIST = ()
 CORS_ALLOW_HEADERS = (
         'x-requested-with',

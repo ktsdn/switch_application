@@ -33,7 +33,7 @@ dnsrvsw_mip=`echo ${10} | awk -F'[/]' 'END{print $1}'`
 mgmt_subnet_prefixlen=`echo $mgmt_network | awk -F'[/]' 'END{print $NF}'`
 
 ##### get the tempates file 
-form_file="/home/switch_application/switch_application/configuration_templates/KR1B_CS_T2_7050S_NEX"
+form_file="/home/switch_application/switch_application/configuration_templates/KR1B_CS_T2_7050S_NETAPP"
 
 ##### create the directory to store generated configuration
 mgmt_config_dir="/var/www/html/config/$mgmt_swname"
