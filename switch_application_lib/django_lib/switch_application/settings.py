@@ -20,18 +20,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'c+jk-+ou_+#i^!bh6k9#9^wvu=t))mkctvg8mk%ktk!(!igyj%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 # Authentication definition
+# django JWT will be used for authentication, 
+# https://github.com/GetBlimp/django-rest-framework-jwt
+# http://www.django-rest-framework.org/api-guide/authentication
+# http://www.django-rest-framework.org/tutorial/4-authentication-and-permissions
+
 REST_FRAMEWORK = {
+##   this makes the pop login menu on web brower, and after login in
+##   permentarly, logined.
+##    'DEFAULT_PERMISSION_CLASSES': (
+##        'rest_framework.permissions.IsAuthenticated',
+##    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
 }
 
