@@ -17,7 +17,7 @@ class KR1B_CS_T2_7050S_NETAPP(COMMONS_UTILS):
   # shell script input arguments definition       #
   #################################################
   # self.linux_args = "%(mgmt_swname)s %(mgmt_desc_uptor)s %(mgmt_desc_downtor)s %(mgmt_network)s"
-  self.linux_args = "%(mgmt_swname)s %(mgmt_portno_uptor)s %(mgmt_portno_downtor)s %(mgmt_network)s"
+  self.linux_args = "%(user_username)s %(user_password)s %(mgmt_swname)s %(mgmt_portno_uptor)s %(mgmt_portno_downtor)s %(mgmt_network)s"
   self.extra_linux_args = "%(gateway_vip)s %(gateway_r1)s %(gateway_r2)s %(mgmtsw_mip)s %(upsrvsw_mip)s %(dnsrvsw_mip)s"
 
   #################################################

@@ -8,7 +8,7 @@ no spanning-tree vlan 4094
 !
 no aaa root
 !
-username admin secret 0 @adm1n
+username CHANGE_USER_NAME secret 0 CHANGE_USER_PASSWORD
 !
 clock timezone Asia/Seoul
 !

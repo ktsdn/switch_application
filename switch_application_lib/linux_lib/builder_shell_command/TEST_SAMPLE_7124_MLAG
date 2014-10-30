@@ -9,24 +9,25 @@
 
 ##### input parameter confirmation
 file_name=$0
-if [[ $# != 6 ]]
+if [[ $# != 8 ]]
 then
  echo "the input parameters are not enough"
  exit
 fi
 
 ##### input paramter re-arrange to build the configuration
-mgmt_swname=$1
-mgmt_desc_uptor=$2
-mgmt_desc_downtor=$3
-mgmt_ip_uptor=$4
-mgmt_ip_downtor=$5
-mgmt_gateway_vip=$6
-
+user_username=$1
+user_password=$2
+mgmt_swname=$3
+mgmt_desc_uptor=$4
+mgmt_desc_downtor=$5
+mgmt_ip_uptor=$6
+mgmt_ip_downtor=$7
+mgmt_gateway_vip=$8
 ##### from here, only ip is necessary (without subnet size)
-mgmt_ip_uptor_wo_subnet=`echo $mgmt_ip_uptor | awk -F'[/]' 'END{print $1}'`
-mgmt_ip_downtor_wo_subnet=`echo $mgmt_ip_downtor | awk -F'[/]' 'END{print $1}'`
-mgmt_gateway_vip_wo_subnet=`echo $mgmt_gateway_vip | awk -F'[/]' 'END{print $1}'`
+mgmt_ip_uptor_wo_subnet=`echo $mgmt_ip_uptor | awk -F'[/]' 'END{print $3}'`
+mgmt_ip_downtor_wo_subnet=`echo $mgmt_ip_downtor | awk -F'[/]' 'END{print $3}'`
+mgmt_gateway_vip_wo_subnet=`echo $mgmt_gateway_vip | awk -F'[/]' 'END{print $3}'`
 
 ##### necessary extra information gethering
 mgmt_subnet_prefixlen=`echo $mgmt_ip_uptor | awk -F'[/]' 'END{print $NF}'`
@@ -78,6 +79,8 @@ declare -a tors_array=($uptor_config_file $downtor_config_file)
 for tor_item in ${tors_array[*]}
 do
  sed -i 's/CHANGE_MGMT_GW_VIP/'$mgmt_gateway_vip_wo_subnet'/' $tor_item
+ sed -i 's/CHANGE_USER_NAME/'$user_username'/' $tor_item
+ sed -i 's/CHANGE_USER_PASSWORD/'$user_password'/' $tor_item
 done
 
 ## unique part, replace the variables

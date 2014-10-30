@@ -17,7 +17,7 @@ class TEST_SAMPLE_7124_SINGLE_MGMT_ONLY(COMMONS_UTILS):
   # shell script input arguments definition       #
   #################################################
   # self.linux_args = "%(mgmt_swname)s %(mgmt_desc)s %(mgmt_ipnet)s %(gateway_ip)s"
-  self.linux_args = "%(mgmt_swname)s %(mgmt_portno)s %(mgmt_ipnet)s %(gateway_ip)s"
+  self.linux_args = "%(user_username)s %(user_password) %(mgmt_swname)s %(mgmt_portno)s %(mgmt_ipnet)s %(gateway_ip)s"
   
   #################################################
   # display parameter, similar with @api_view     #

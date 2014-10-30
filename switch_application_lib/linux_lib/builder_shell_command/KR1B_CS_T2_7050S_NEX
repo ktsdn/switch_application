@@ -10,24 +10,26 @@
 
 ##### input parameter confirmation
 file_name=$0
-if [[ $# != 10 ]]
+if [[ $# != 12 ]]
 then
  echo "the input parameters are not enough"
  exit
 fi
 
 ##### input paramter re-arrange to build the configuration
-mgmt_swname=$1
-mgmt_desc_uptor=$2
-mgmt_desc_downtor=$3
-mgmt_network=$4
+user_username=$1
+user_password=$2
+mgmt_swname=$3
+mgmt_desc_uptor=$4
+mgmt_desc_downtor=$5
+mgmt_network=$6
 ##### from here, only ip is necessary (without subnet size)
-gateway_vip=`echo $5 | awk -F'[/]' 'END{print $1}'`
-gateway_r1=`echo $6 | awk -F'[/]' 'END{print $1}'`
-gateway_r2=`echo $7 | awk -F'[/]' 'END{print $1}'`
-mgmtsw_mip=`echo $8 | awk -F'[/]' 'END{print $1}'`
-upsrvsw_mip=`echo $9 | awk -F'[/]' 'END{print $1}'`
-dnsrvsw_mip=`echo ${10} | awk -F'[/]' 'END{print $1}'`
+gateway_vip=`echo $7 | awk -F'[/]' 'END{print $3}'`
+gateway_r1=`echo $8 | awk -F'[/]' 'END{print $3}'`
+gateway_r2=`echo $9 | awk -F'[/]' 'END{print $3}'`
+mgmtsw_mip=`echo ${10} | awk -F'[/]' 'END{print $3}'`
+upsrvsw_mip=`echo ${11} | awk -F'[/]' 'END{print $3}'`
+dnsrvsw_mip=`echo ${12} | awk -F'[/]' 'END{print $3}'`
 
 ##### necessary extra information gethering
 mgmt_subnet_prefixlen=`echo $mgmt_network | awk -F'[/]' 'END{print $NF}'`
@@ -81,6 +83,8 @@ do
  sed -i 's/CHANGE_NTP_1/'$gateway_r1'/' $tor_item
  sed -i 's/CHANGE_NTP_2/'$gateway_r2'/' $tor_item
  sed -i 's/CHANGE_MGMT_GW_VIP/'$gateway_vip'/' $tor_item
+ sed -i 's/CHANGE_USER_NAME/'$user_username'/' $tor_item
+ sed -i 's/CHANGE_USER_PASSWORD/'$user_password'/' $tor_item
 done
 
 ## unique part, replace the variables

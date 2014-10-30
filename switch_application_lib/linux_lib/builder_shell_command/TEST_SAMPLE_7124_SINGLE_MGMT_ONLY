@@ -9,20 +9,21 @@
 
 ##### input parameter confirmation
 file_name=$0
-if [[ $# != 4 ]]
+if [[ $# != 6 ]]
 then
  echo "the input parameters are not enough"
  exit
 fi
 
 ##### input paramter re-arrange to build the configuration
-mgmt_swname=$1
-mgmt_desc=$2
-mgmt_ipnet=$3
-gateway_ip=$4
-
+user_username=$1
+user_password=$2
+mgmt_swname=$3
+mgmt_desc=$4
+mgmt_ipnet=$5
+gateway_ip=$6
 ##### from here, only ip is necessary (without subnet size)
-mgmtsw_ip=`echo $mgmt_ipnet | awk -F'[/]' 'END{print $1}'`
+mgmtsw_ip=`echo $mgmt_ipnet | awk -F'[/]' 'END{print $3}'`
 
 ##### necessary extra information gethering
 mgmt_subnet_prefixlen=`echo $mgmt_ipnet | awk -F'[/]' 'END{print $NF}'`
@@ -62,6 +63,8 @@ declare -a tors_array=($sw_config_file)
 for tor_item in ${tors_array[*]}
 do
  sed -i 's/CHANGE_MGMT_GW_IP/'$gateway_ip'/' $tor_item
+ sed -i 's/CHANGE_USER_NAME/'$user_username'/' $tor_item
+ sed -i 's/CHANGE_USER_PASSWORD/'$user_password'/' $tor_item
 done
 
 ## unique part, replace the variables

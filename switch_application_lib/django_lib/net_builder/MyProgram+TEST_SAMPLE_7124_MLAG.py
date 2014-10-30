@@ -17,7 +17,7 @@ class TEST_SAMPLE_7124_MLAG(COMMONS_UTILS):
   # shell script input arguments definition       #
   #################################################
   # self.linux_args = "%(mgmt_swname)s %(mgmt_desc_uptor)s %(mgmt_desc_downtor)s %(mgmt_ip_uptor)s %(mgmt_ip_downtor)s %(mgmt_gateway_vip)s"
-  self.linux_args = "%(mgmt_swname)s %(mgmt_portno_uptor)s %(mgmt_portno_downtor)s %(mgmt_ip_uptor)s %(mgmt_ip_downtor)s %(mgmt_gateway_vip)s"
+  self.linux_args = "%(user_username)s %(user_password)s %(mgmt_swname)s %(mgmt_portno_uptor)s %(mgmt_portno_downtor)s %(mgmt_ip_uptor)s %(mgmt_ip_downtor)s %(mgmt_gateway_vip)s"
 
   #################################################
   # display parameter, similar with @api_view     #
